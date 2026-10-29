@@ -56,4 +56,16 @@ public class Tablero {
         }
         return false;
     }
+    public boolean estaCompleto(){
+        for (int fila=0; fila<9;fila++){
+            for (int columna=0; columna<9; columna++){
+                Casilla c = casillas[fila][columna];
+                if (c.getValor() == 0){
+                    return false;
+                }
+            }
+        }
+        System.out.print("Victoria!!!");
+        return true;
+    }
 }
