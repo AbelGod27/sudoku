@@ -1,19 +1,36 @@
-
-void main() {
-    int[][] inicial = {
-            {5,3,0,0,7,0,0,0,0},
-            {6,0,0,1,9,5,0,0,0},
-            {0,9,8,0,0,0,0,6,0},
-            {8,0,0,0,6,0,0,0,3},
-            {4,0,0,8,0,3,0,0,1},
-            {7,0,0,0,2,0,0,0,6},
-            {0,6,0,0,0,0,2,8,0},
-            {0,0,0,4,1,9,0,0,5},
-            {0,0,0,0,8,0,0,7,9}
-    };
-    Tablero tablero = new Tablero(inicial);
-    int fila, columna, valor;
+public static void main(String[] args) {
+    int fila,columna,valor;
     Scanner sc = new Scanner(System.in);
+    Tablero tablero = new Tablero(Generador.generar(dificultad(sc).getHuecos()));
     tablero.mostrar();
+    while (!tablero.estaCompleto()){
+        System.out.print("Dame la fila: ");
+        fila = sc.nextInt();
 
+        System.out.print("Dame la columna: ");
+        columna = sc.nextInt();
+
+        System.out.print("Dame la valor: ");
+        valor = sc.nextInt();
+
+        tablero.colocar(fila,columna,valor);
+
+        tablero.mostrar();
+    }
+}
+
+private static Dificultad dificultad(Scanner sc){
+    System.out.println("DIFICULTAD");
+    System.out.println("1. Fácil");
+    System.out.println("2. Medio");
+    System.out.println("3. Difícil");
+    System.out.print("Dime la dificultad que eliges: ");
+    int opcion = sc.nextInt();
+    Dificultad d = switch(opcion){
+        case 1 -> Dificultad.facil;
+        case 2 -> Dificultad.medio;
+        case 3 -> Dificultad.dificil;
+        default -> Dificultad.medio;
+    };
+    return d;
 }

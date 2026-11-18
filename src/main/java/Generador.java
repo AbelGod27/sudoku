@@ -51,7 +51,7 @@ public class Generador {
         return true;
     }
 
-    public static int[][] generar() {
+    public static int[][] generar(int huecos) {
         int[][] g = new int[9][9];
         llenar(g);
 

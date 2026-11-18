@@ -18,12 +18,16 @@ public class Tablero {
         }
     }
     public boolean colocar(int fila, int columna, int valor){
-        if (fila>=9 || fila<0 || columna>=9 || columna<0 || estaEnFila(fila,valor) || estaEnColumna(columna,valor)){
+        if (fila>=9 || fila<0 || columna>=9 || columna<0 || valor<=0 || valor>9 || estaEnFila(fila,valor) || estaEnColumna(columna,valor) || estaEnCaja(fila, columna, valor)){
             System.out.println("Movimiento no válido.");
             return false;
         }
         Casilla c = casillas[fila][columna];
-        return c.setValor(valor);
+        boolean seCambio = c.setValor(valor);
+        if (!seCambio) {
+            System.out.println("Esa casilla es fija, no se puede cambiar.");
+        }
+        return seCambio;
     }
     public boolean estaEnFila(int fila, int valor){
         for (int columna=0;columna<9;columna++){
